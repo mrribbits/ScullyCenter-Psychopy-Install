@@ -47,11 +47,12 @@ The VPixx tarball and the EyeLink folder are auto-detected when needed.
 
 ## Prerequisites (Windows)
 
-1. **EyeLink Developers Kit** — needed at MRI/MEG/EEG/Eye Tracking. Provides the pylink
-   package under `C:\Program Files (x86)\SR Research\EyeLink\SampleExperiments\Python\64\<pyver>\`.
-2. **VPixx Software Tools** — needed at the MEG Lab only. Provides `pypixxlib-<ver>.tar.gz`
-   under `C:\Program Files\VPixx Technologies\...`.
-3. **Internet access** — for the Miniconda / Standalone download and the pip installs.
+1. **EyeLink Developers Kit** — Installed by Scully staff. Needed at MRI/MEG/EEG/Eye Tracking.
+   Provides the pylink package under `C:\Program Files (x86)\SR
+   Research\EyeLink\SampleExperiments\Python\64\<pyver>\`.
+3. **VPixx Software Tools** — Installed by Scully staff. needed at the MEG Lab only. Provides
+   `pypixxlib-<ver>.tar.gz` under `C:\Program Files\VPixx Technologies\...`.
+5. **Internet access** — for the Miniconda / Standalone download and the pip installs.
 
 At TMS / Testing Rooms neither vendor package is required.
 
