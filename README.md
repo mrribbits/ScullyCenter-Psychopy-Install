@@ -17,13 +17,13 @@ decides which APIs get installed), then how to install (conda env or Standalone 
 | 5 | TMS Lab | — | — |
 | 6 | Testing Room | — | — |
 
-PsychoPy itself (and `psychtoolbox` in conda mode) installs at every facility.
+PsychoPy itself installs at every facility.
 
 ### Install modes
 
 - **Conda environment** — no admin needed; installs a per-user Miniconda if required.
-  Also installs `psychtoolbox`.
-- **Standalone app** — downloads the latest StandalonePsychoPy installer from PsychoPy's
+  Also installs `psychtoolbox` for low-latency audio.
+- **Standalone app** — no admin needed; downloads the StandalonePsychoPy installer from PsychoPy's
   GitHub releases, runs it, then wires the relevant APIs into the app's bundled Python.
   (Standalone already ships psychtoolbox.)
 
@@ -53,9 +53,9 @@ The VPixx tarball and the EyeLink folder are auto-detected when needed.
    under `C:\Program Files\VPixx Technologies\...`.
 3. **Internet access** — for the Miniconda / Standalone download and the pip installs.
 
-At TMS / Testing Room neither vendor package is required.
+At TMS / Testing Rooms neither vendor package is required.
 
-No admin rights are required for conda mode. The vendor packages live in `Program Files`
+No admin rights are required. The vendor API packages live in `Program Files`
 (shared across accounts); the script only wires their Python bindings into the target
 interpreter.
 
@@ -84,16 +84,6 @@ conda activate psychopy
 psychopy            # Coder/Builder GUI
 ```
 
-If `conda` isn't recognized in a plain PowerShell window, your execution policy is blocking
-the profile the hook lives in. The script sets it to `RemoteSigned` (CurrentUser, no admin),
-but on managed PCs the policy is often enforced by Group Policy at a scope you can't
-override — in that case just use the Desktop shortcut or the Anaconda PowerShell Prompt,
-or launch the app directly:
-
-```powershell
-& "$env:USERPROFILE\miniconda3\envs\psychopy\Scripts\psychopy.exe"
-```
-
 ## Mode 2 — Standalone app
 
 What it does:
@@ -107,15 +97,6 @@ What it does:
 After it finishes, launch PsychoPy from the Start Menu — pylink and pypixxlib are
 available inside Builder/Coder.
 
-> **No admin? Install to a user-writable folder.** The standalone installer defaults to
-> `Program Files`, which needs admin — and wiring the APIs in means *writing into the app's
-> `site-packages`*, which also needs write access there. Without admin, pick a location
-> under your user folder during the installer step. If PsychoPy ends up somewhere the
-> script can't write, it will tell you, and you can reinstall to a user-writable path.
-> On a non-admin account, **conda mode is the smoother choice.**
-
-If auto-detection misses the install, re-run with `-StandaloneDir "<folder>"`.
-
 ## Uninstalling
 
 The menu also offers removal (or pass the mode directly):
@@ -128,16 +109,6 @@ The menu also offers removal (or pass the mode directly):
 
 Both prompt for confirmation first; add `-Force` to skip the prompt.
 
-## Same PC, different user account
-
-The new account runs the **same script with no changes** — VPixx and EyeLink live under
-`C:\Program Files (x86)\...`, identical for every user.
-
-- **Conda mode, no admin:** the script installs a per-user Miniconda and builds this
-  account's own `psychopy` env (envs are per-user, not shared). Pass `-UseExistingConda`
-  to reuse a conda already on PATH.
-- **Standalone mode, no admin:** install PsychoPy to a user-writable folder (see the note
-  above) so the API wiring can write into its `site-packages`.
 
 ## Options
 
